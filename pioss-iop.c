@@ -44,7 +44,7 @@ iop_init (nid_t id, const param_t param)
   iop_st.id = id;
   iop_st.file = (param.is_shared_file) ? 0 : id;
   iop_st.buf_size = param.nbytes_per_iop;
-  iop_st.offset = (param.is_shared_file) ? 0 : (id * param.nbytes_per_iop);
+  iop_st.offset = (param.is_shared_file) ? (id * param.nbytes_per_iop) : 0;
   iop_st.xfer_size = param.stripe_size;
   iop_st.dts_set = mds_open_file (iop_st.file, param);
   iop_st._dts_set_len = param.stripe_width;
@@ -55,7 +55,6 @@ iop_xfer (const param_t param)
 {
   nid_t dts;
   uint32_t idx;
-  char *iop_str;
 
   while (iop_st.buf_size > 0)
     {
@@ -68,19 +67,12 @@ iop_xfer (const param_t param)
       dts = iop_st.dts_set[idx];
 
       if (param.is_debug)
-	pdbg("iop %u -> dts %u; file = %u, xfer_size = %u", iop_st.id, dts,
-	     iop_st.file, iop_st.xfer_size);
+	pdbg("iop %u -> dts %u; file = %u, xfer_size = %llu, offset = %llu",
+	     iop_st.id, dts, iop_st.file, iop_st.xfer_size, iop_st.offset);
       dts_xfer (iop_st.file, iop_st.xfer_size, dts, param);
 
       iop_st.buf_size -= iop_st.xfer_size;
       iop_st.offset += iop_st.xfer_size;
-
-      if (param.is_debug)
-	{
-	  iop_str = iop_st_tostr (iop_st);
-	  pdbg("%s", iop_str);
-	  free (iop_str);
-	}
     }
 } // iop_xfer ()
 

@@ -181,7 +181,7 @@ bytes_tostr (uint64_t bytes)
   double b_trans;
   int len;
 
-  fmt = "%0.6f %s";
+  fmt = "%g %s";
   if (bytes >= TIB)
     {
       b_trans = bytes / (double) TIB;
@@ -203,7 +203,10 @@ bytes_tostr (uint64_t bytes)
       unit = "KiB";
     }
   else
-    unit = "bytes";
+    {
+      b_trans = bytes;
+      unit = "bytes";
+    }
 
   len = snprintf(str, 0, fmt, b_trans, unit);
   if (len > 0)
@@ -270,9 +273,10 @@ print_stats (const stats_t stats)
       "Num. bytes in the most loaded data server: %s\n"
       "Num. of file in the most selected data server: %u\n";
   bytes_str = bytes_tostr (stats.max_nbytes);
+  pdbg("%s", bytes_str);
 
-  fprintf (stdout, fmt, (stats.end_time - stats.start_time),
-	   bytes_tostr (stats.max_nbytes), stats.max_nfiles);
+  fprintf (stdout, fmt, (stats.end_time - stats.start_time), bytes_str,
+	   stats.max_nfiles);
   fflush (stdout);
 
   free (bytes_str);
