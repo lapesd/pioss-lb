@@ -234,7 +234,7 @@ curtime ()
 void
 print_splash ()
 {
-  fputs ("PIOSS - Parallel I/O and Storage System simulation model.\n\n",
+  fputs ("\nPIOSS - Parallel I/O and Storage System simulation model.\n\n",
   stdout);
   fflush (stdout);
 } // print_splash ()
@@ -269,11 +269,10 @@ print_stats (const stats_t stats)
 {
   char *fmt, *bytes_str;
 
-  fmt = "Simulation executed in %0.6f seconds\n"
+  fmt = "\nSimulation executed in %0.6f seconds\n"
       "Num. bytes in the most loaded data server: %s\n"
       "Num. of file in the most selected data server: %u\n";
   bytes_str = bytes_tostr (stats.max_nbytes);
-  pdbg("%s", bytes_str);
 
   fprintf (stdout, fmt, (stats.end_time - stats.start_time), bytes_str,
 	   stats.max_nfiles);

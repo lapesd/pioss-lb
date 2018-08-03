@@ -138,7 +138,7 @@ parse_opt_uint32 (char *opt)
   val = strtoul (opt, &endptr, 10);
 
   if ((errno == ERANGE && val == UINT_MAX) || (errno != 0 && val == 0))
-    perr("%s; aborting options parsing!", strerror(errno));
+    perr("%s: %u; aborting options parsing!", strerror(errno), val);
 
   if (endptr == opt || *endptr != '\0')
     perr("Invalid option value: %s", opt);
@@ -155,7 +155,7 @@ parse_opt_uint64 (char *opt)
   val = strtoull (opt, &endptr, 10);
 
   if ((errno == ERANGE && val == ULLONG_MAX) || (errno != 0 && val == 0))
-    perr("%s; aborting options parsing!", strerror(errno));
+    perr("%s: %llu; aborting options parsing!", strerror(errno), val);
 
   if (endptr == opt || *endptr != '\0')
     perr("Invalid option value: %s", opt);
