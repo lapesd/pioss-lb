@@ -18,7 +18,9 @@
 #define TIB (1024LL * GIB)
 
 #define MAX_LB_TYPE_NAME 16
+#ifndef PATH_MAX
 #define PATH_MAX 1024
+#endif
 
 /*** TYPES ********************************************************************/
 
