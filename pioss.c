@@ -7,6 +7,7 @@
 #include "pioss.h"
 #include "pioss-opts.h"
 #include "pioss-mds.h"
+#include "pioss-lb.h"
 #include "pioss-lb-rand.h"
 #include "pioss-lb-randseq.h"
 #include "pioss-dts.h"
@@ -35,6 +36,8 @@ main (int argc, char **argv)
   print_param (param);
 
   pioss_exec (param, &stats);
+
+  pioss_lb_regclean();
 
   print_stats (stats);
   fprint_stats (stats, param);

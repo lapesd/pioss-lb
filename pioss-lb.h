@@ -30,5 +30,7 @@ void
 pioss_lb_register (const lb_t *lb);
 const lb_t *
 pioss_lb_lookup (const char *type);
+void
+pioss_lb_regclean ();
 
 #endif /* PIOSS_LB_H_ */

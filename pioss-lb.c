@@ -64,3 +64,19 @@ pioss_lb_lookup (const char *type)
 
   return lb;
 } // pioss_lb_lookup ()
+
+void
+pioss_lb_regclean ()
+{
+  lblist_t *next, *swp;
+
+  next = lb_head.next;
+  while (next != NULL)
+    {
+      swp = next;
+      next = swp->next;
+      swp->next = NULL;
+      free (swp);
+    }
+  lb_tail = NULL;
+} // pioss_lb_regclean ()
