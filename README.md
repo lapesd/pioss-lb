@@ -14,7 +14,7 @@ At the end of the simulation, the maximum number of bytes and the maximum number
 1. Clone PIOSS repository to your local machine:
 
     ```
-    git clone git@github.com:lapesd/pioss.git
+    git clone git@github.com:lapesd/pioss-lb.git
     ```	
 
 2. Create a build directory and the Makefile:
