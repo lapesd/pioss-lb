@@ -5,7 +5,6 @@
  */
 
 #include <stdlib.h>
-#include <assert.h>
 #include <string.h>
 
 #include "pioss-lb.h"
@@ -28,10 +27,10 @@ lb_rand_get_dts (const nid_t *dts_in, uint32_t ndts, nid_t *dts_out,
 
 /*** VARIABLES ****************************************************************/
 
-lb_t lb_rand =
+static lb_t lb_rand =
   { (LB_TYPE_RAND), (init_f) lb_rand_init, (get_dts_f) lb_rand_get_dts };
 
-tinymt32_t g;
+static tinymt32_t g;
 
 /*** FUNCTIONS ****************************************************************/
 

@@ -10,6 +10,7 @@
 #include "pioss-lb.h"
 #include "pioss-lb-rand.h"
 #include "pioss-lb-randseq.h"
+#include "pioss-lb-cyclic.h"
 #include "pioss-dts.h"
 #include "pioss-iop.h"
 #include "pioss-util.h"
@@ -30,6 +31,7 @@ main (int argc, char **argv)
 
   lb_rand_register ();
   lb_randseq_register ();
+  lb_cyclic_register ();
 
   parse_opts (argc, argv, &param);
 
@@ -37,7 +39,7 @@ main (int argc, char **argv)
 
   pioss_exec (param, &stats);
 
-  pioss_lb_regclean();
+  pioss_lb_regclean ();
 
   print_stats (stats);
   fprint_stats (stats, param);
@@ -56,7 +58,6 @@ pioss_exec (const param_t param, stats_t *stats)
   dts_init (param);
 
   stats->start_time = curtime ();
-
 
   /* simulates I/O requests iterating through I/O processes */
   for (iop = 0; iop < param.niop; iop++)
