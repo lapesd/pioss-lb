@@ -1,9 +1,11 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 2.8)
 
 project(pioss)
 
-include_directories(., ./lib/tinymt)
+add_subdirectory(./lib/tinymt)
 
-file(GLOB SOURCES "./*.c" "./lib/tinymt/*.c")
+file(GLOB SOURCES "./*.c")
 
 add_executable(pioss ${SOURCES})
+
+target_link_libraries(pioss LINK_PUBLIC tinymt)

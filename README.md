@@ -1,6 +1,6 @@
-# PIOSS
+# PIOSS-LB
 
-A Parallel I/O and Storage System (PIOSS) simulation model for the analysis of load balance aspects in parallel file systems.
+A Parallel I/O and Storage System (PIOSS) simulation model for the analysis of spatial aspects of load balance in parallel file systems.
 
 
 ## Options
